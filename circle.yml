@@ -1,0 +1,15 @@
+---
+
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+
+test:
+  pre:
+    - docker build -t checkraiser/sourcegraph:1.0 .
+  override:
+    - docker push checkraiser/sourcegraph:1.0
